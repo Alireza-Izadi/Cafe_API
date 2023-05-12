@@ -24,10 +24,13 @@ class Cafe(db.Model):
     can_take_calls = db.Column(db.Boolean, nullable=False)
     coffee_price = db.Column(db.String(250), nullable=True)
 
+    #Function to return Datas in DB as a dictionary
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 app.app_context().push()    
-db.create_all()
+# db.create_all()
+
 @app.route("/")
 def home():
     return render_template("index.html")
